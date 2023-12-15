@@ -14,7 +14,7 @@ If the mod isn't working with future updates, I will endeavour to fix this when 
 
 ## Installation
 
-Download the latest [release](---releases)
+Download the latest [release](https://github.com/flinn-fraher/LethalGiantless/releases)
 
 - Install and configure [BepInEx](https://thunderstore.io/c/lethal-company/p/BepInEx/BepInExPack/).
 - Place RemoveGiants.dll into the plugins folder in ``{GameDirectory}/BepInEx/Plugins.``
