@@ -25,8 +25,12 @@ Each player in the lobby needs to have this mod installed locally.
 ### Build
 
 To build this mod locally:
+
+To configure the NuGet dependcies for this project, please refer to [the documentation for the LethalCompanyTemplateMod](https://github.com/LethalCompany/LethalCompanyModdingWiki/wiki/Starting-a-mod#adding-nuget-source)
+
 - Clone the entire repository
 - Open the .sln file in an IDE of your choice
 - Build the project
 - Navigate to ``\bin\Debug\netstandard2.1`` to find RemoveGiants.dll, following the instructions above to install.
+
 
