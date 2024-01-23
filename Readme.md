@@ -8,7 +8,7 @@ Refer to [installation](#installation) for usage, and enjoy!
 ## Overview
 This is a BepInEx mod for the game Lethal Company, which removes giants on each client as they are spawned in.
 
-The mod has been tested in a game with four players, on version 44 with no issues. Future patches may be incompatible with this mod (I haven't tested this on version 45 yet)
+The mod has been tested in a game with four players with no issues. Future patches may be incompatible with this mod (I will continue to test as new updates are released)
 
 If the mod isn't working with future updates, I will endeavour to fix this when I have time.
 
