@@ -28,8 +28,6 @@ To build this mod locally:
 
 To configure the NuGet dependency for this project, please refer to [the documentation for the LethalCompanyTemplateMod](https://github.com/LethalCompany/LethalCompanyModdingWiki/wiki/Starting-a-mod#adding-nuget-source)
 
-- Clone the entire repository
-- Open the .sln file in an IDE of your choice
 - Configure the references in LT_RemoveGiants.csproj to your local installation of Lethal Company
 - Build the project
 - Move RemoveGiants.dll to your installation of Lethal Company following the [installation instructions](#installation)
