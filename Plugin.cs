@@ -30,7 +30,7 @@ namespace LC_RemoveGiants
 
             // Get configuration values
             cfgMaxGiants = Config.Bind("Main", "MaxGiants", 0, "");
-            cfgGiantSpeed = Config.Bind("Main", "GiantMovementSpeed", .22f, "");
+            cfgGiantSpeed = Config.Bind("Main", "GiantMovementSpeed", 1.0f, "");
             
             
             // Plugin startup logic
