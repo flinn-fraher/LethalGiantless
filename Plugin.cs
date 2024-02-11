@@ -1,8 +1,12 @@
 ﻿using HarmonyLib;
 using System.Linq;
 using BepInEx;
-using KillGiants.Patches;
+using BepInEx.Configuration;
+using KillGiants;
 using UnityEngine;
+
+
+
 
 namespace LC_RemoveGiants
 {
@@ -10,20 +14,36 @@ namespace LC_RemoveGiants
     public class Plugin : BaseUnityPlugin
     {
         private readonly Harmony _harmony = new Harmony(PluginInfo.PLUGIN_GUID);
-        private static Plugin _instance;
-        
+
+        public static Plugin _instance;
+        public static ConfigEntry<int> cfgMaxGiants;
+        public static ConfigEntry<float> cfgGiantSpeed;
+
+        public static int NumGiants;
+
         private void Awake()
         {
             if (_instance == null)
             {
                 _instance = this;
             }
+
+            // Get configuration values
+            cfgMaxGiants = Config.Bind("Main", "MaxGiants", 0, "");
+            cfgGiantSpeed = Config.Bind("Main", "GiantMovementSpeed", .22f, "");
+            
+            
             // Plugin startup logic
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} changed!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Logger.LogInfo($"[{PluginInfo.PLUGIN_GUID}]: Attempting to patch...");
             
-            _harmony.PatchAll(typeof(Plugin));
+            Logger.LogInfo($"[Config] Max Giants: {cfgMaxGiants.Value}");
+            Logger.LogInfo($"[Config] Giant Move Scalar: {cfgGiantSpeed.Value}");
+            
+            // _harmony.PatchAll(typeof(Plugin));
             _harmony.PatchAll(typeof(ForestGiantRemoval));
+
 
             if (_harmony.GetPatchedMethods().Any())
             {
@@ -34,20 +54,37 @@ namespace LC_RemoveGiants
 }
 
 
-namespace KillGiants.Patches
+namespace KillGiants
 {
     [HarmonyPatch(typeof(ForestGiantAI))]
     internal class ForestGiantRemoval
     {
         [HarmonyPatch(typeof(ForestGiantAI), "Start")]
         [HarmonyPostfix]
-        static void RemoveGiant(ForestGiantAI instance)
+        public static void RemoveGiant(ForestGiantAI __instance)
         {
-            instance.KillEnemyOnOwnerClient();
+            if (LC_RemoveGiants.Plugin.NumGiants < LC_RemoveGiants.Plugin.cfgMaxGiants.Value)
+            {
+		        Debug.Log($"[RemoveGiant]: Spawned a single giant");
+                EnemyAI AIBehaviour = __instance.gameObject.GetComponent<EnemyAI>();
+                if (!AIBehaviour)
+                {
+                    Debug.Log("[LethalGiantless]: Failed to find associated AI behaviour!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Bad bad bad");
+                    return;
+                }
+         
+                AIBehaviour.syncMovementSpeed *= LC_RemoveGiants.Plugin.cfgGiantSpeed.Value;
+                LC_RemoveGiants.Plugin.NumGiants++;
+                return;
+	        }
+         
             
-            UnityEngine.Object.Destroy(instance.gameObject);
+            __instance.KillEnemyOnOwnerClient();
+            
+            UnityEngine.Object.Destroy(__instance.gameObject);
             
             Debug.Log($"[RemoveGiant]: Giant Removed (Hopefully)");
+
         }
     }
 }
