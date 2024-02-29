@@ -6,9 +6,16 @@ Refer to [installation](#installation) for usage, and enjoy!
 
 
 ## Overview
-This is a BepInEx mod for the game Lethal Company, which removes giants on each client as they are spawned in.
+This is a BepInEx mod for the game Lethal Company, which removes all but one giant at spawn-time.
+The mod contains a config file which allows adjustment of the maximum number of giants, and a scalar
+that is applied to every giant's movement speed.
 
-The mod has been tested in a game with four players with no issues. Future patches may be incompatible with this mod (I will continue to test as new updates are released)
+To adjust this config file, go to ``{GameDirectory}/BepInEx/Config`` and edit the RemoveGiants.cfg file.
+
+- ``MaxGiants``: The maximum number of giants that can spawn.
+- ``GiantMovementSpeed``: Each giant's movement speed will be multiplied by this scalar value.
+
+The mod has been tested in version 49 in a four-player game with no issues. Future patches may be incompatible with this mod (I will continue to test as new updates are released)
 
 If the mod isn't working with future updates, I will endeavour to fix this when I have time.
 
