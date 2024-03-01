@@ -4,6 +4,9 @@
 tl;dr: This mod removes giants from Lethal Company.
 Refer to [installation](#installation) for usage, and enjoy!
 
+### Thunderstore
+Install via the [Thunderstore Mod Manager](https://thunderstore.io/c/lethal-company/p/Flone/LethalGiantless/) 
+
 
 ## Overview
 This is a BepInEx mod for the game Lethal Company, which removes all but one giant at spawn-time.
